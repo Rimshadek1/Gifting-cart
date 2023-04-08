@@ -1,0 +1,144 @@
+<div class="container ">
+    <form action="" class="forms" method="post" id="checkout-form">
+        <div class="row">
+            <span class="col-md-8 ">
+                <div class="forms1">
+
+                    <h1 class="delivery">Delivery Details</h1>
+
+                    <input type="text" class="form-control adress" name=" Adress" id="Adress" placeholder="Adress">
+
+
+
+
+                    <input type="text" class="form-control pin" name="Pin Code" id="Pin Code" placeholder="Pin Code">
+
+
+
+
+                    <input type="text" class="form-control mob" name="Mobile" id="Mobile" placeholder="Mobile">
+                    <input type="text" name="userId" value="{{user._id}}" hidden>
+
+
+                </div>
+                <hr>
+                <div class="col-md-5 ready">
+                    <div class=" container mt-5 checkout text-center">
+
+
+                        <h5 class="textt" style="color: rgb(255, 153, 0);">Total: ₹{{total}}</h5>
+
+
+                        <h6 class="texttt" style="color: #fff;">Payment Method</h6>
+                        <div>
+                            <span class="img1">
+                                <img class="imgg1"
+                                    src="https://imgs.search.brave.com/KiM9hYwkgQDDI3MkCaCtLIxn7zs9NjiS564bmDKTJ6M/rs:fit:632:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5B/c3hhdVdjbUZwOEZP/S2JqQmNZbWZBSGFG/aiZwaWQ9QXBp"
+                                    alt="">
+                                <img class="imgg2"
+                                    src="https://imgs.search.brave.com/zVttkADJceAKM3GU2Ac6LhjEKs89Y9BBmc13W2G1Yhc/rs:fit:474:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC44/UWJCT0lnMVNFYkpu/cXlfd1VjbUtnSGFI/YSZwaWQ9QXBp"
+                                    alt="">
+                            </span>
+                        </div>
+                        <div class="radio">
+                            <div class="form-check cod">
+                                <input class="form-check-input" type="radio" name="Payment-method" value="COD">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    COD
+                                </label>
+                            </div>
+                            <div class="form-check online">
+                                <input class="form-check-input" type="radio" name="Payment-method" value="ONLINE">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    OnlinePayment
+                                </label>
+
+                            </div>
+                            <button type="submit" class="button1">
+                                <svg style="width:24px;height:24px" viewBox="0 0 24 24" id="cart">
+                                    <path fill="#000000"
+                                        d="M17,18A2,2 0 0,1 19,20A2,2 0 0,1 17,22C15.89,22 15,21.1 15,20C15,18.89 15.89,18 17,18M1,2H4.27L5.21,4H20A1,1 0 0,1 21,5C21,5.17 20.95,5.34 20.88,5.5L17.3,11.97C16.96,12.58 16.3,13 15.55,13H8.1L7.2,14.63L7.17,14.75A0.25,0.25 0 0,0 7.42,15H19V17H7C5.89,17 5,16.1 5,15C5,14.65 5.09,14.32 5.24,14.04L6.6,11.59L3,4H1V2M7,18A2,2 0 0,1 9,20A2,2 0 0,1 7,22C5.89,22 5,21.1 5,20C5,18.89 5.89,18 7,18M16,11L18.78,6H6.14L8.5,11H16Z" />
+                                </svg>
+                                <span>Checkout</span>
+                                <svg id="check" style="width:24px;height:24px" viewBox="0 0 24 24">
+                                    <path stroke-width="2" fill="none" stroke="#ffffff" d="M 3,12 l 6,6 l 12, -12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </span>
+        </div>
+    </form>
+</div>
+<script>
+    $('#checkout-form').submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: 'place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
+
+
+                if (response.codStatus) {
+                    alert('okay?')
+                    location.href = '/order-succes'
+                }
+                else {
+                    alert('okay??')
+                    razorPayPayment(response)
+                }
+            }
+        })
+    })
+    function razorPayPayment(order) {
+        var options = {
+            "key": "rzp_test_M51y7iP7UUb0oz", // Enter the Key ID generated from the Dashboard
+            "amount": order.price, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Acme Corp",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9000090000"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+    function verifyPayment(payment, order) {
+        $.ajax({
+            url: '/verify-payment',
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    location.href = '/order-succes'
+
+                } else {
+                    alert('Payment failed')
+                }
+            }
+        })
+    }
+</script>

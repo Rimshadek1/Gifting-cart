@@ -1,0 +1,35 @@
+<div class="custom-container ">
+    <h1 class="text-center m-4 text-success">Dinepoint</h1>
+    <div class="jumbotron col-md-6 m-auto">
+        <h3 class="text-center text-primary">Admin Login Form</h3>
+
+
+        <div class="container mt-5 pl-5">
+            <form action="/loginAdmin" method="POST">
+                {{#if loginErr}}
+                <p class="error">{{loginErr}}
+                </p>
+                {{/if}}
+                <div class="form-group">
+                    <label for="Email">Email Id <span class="text-danger">*</span></label>
+                    <input type="Email" class="form-control" name="Email" id="Email" placeholder="Enter your email id">
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password <span class="text-danger">*</span></label>
+                    <input type="Password" class="form-control" name="Password" id="Password"
+                        placeholder="Enter Your Password">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-info btn-block">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">
+                            New user? Register <a href="/signup">here</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

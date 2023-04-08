@@ -1,0 +1,142 @@
+body {
+    background: linear-gradient(to right, #2a2a3f 0%, #1d2e53 100%);
+}
+
+.row {
+    position: absolute;
+    left: 48%;
+    top: 59%;
+
+    transform: translate(-50%, -50%);
+}
+
+.forms {
+    position: absolute;
+    left: 28%;
+    top: 33%;
+    transform: translate(-50%, -50%);
+}
+
+.forms1 {
+    position: absolute;
+    left: 34%;
+    top: 63%;
+    transform: translate(-50%, -50%);
+}
+
+.delivery {
+    font-family: 'FontAwesome';
+    color: #fff;
+    width: 156px;
+    position: absolute;
+    left: 488%;
+    top: -769%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+}
+
+.adress {
+    position: absolute;
+    width: 229px;
+    left: 311%;
+    top: -268%;
+    transform: translate(-50%, -50%);
+}
+
+.mob {
+    position: absolute;
+    left: 456%;
+    top: -268%;
+    transform: translate(-50%, -50%);
+}
+
+.pin {
+    /* position: absolute; */
+    margin-left: 604%;
+    margin-top: -41%;
+    left: 7%;
+    top: -11%;
+    transform: translate(-50%, -50%);
+}
+
+.textt {
+    position: absolute;
+    color: #fff;
+    font-family: 'FontAwesome';
+    left: 704%;
+    top: -135%;
+    width: 234px;
+    font-size: 19px;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.img1 {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    display: flex;
+    width: 154px;
+    height: 127px;
+}
+
+.imgg1 {
+    position: absolute;
+    left: 80%;
+    top: 105%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+}
+
+.imgg2 {
+    position: absolute;
+    left: 212%;
+    top: 105%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+}
+
+.cod {
+    color: #fff;
+    position: absolute;
+    left: 207%;
+    top: 1050%;
+    transform: translate(-50%, -50%);
+}
+
+.online {
+    color: #fff;
+    position: absolute;
+    margin-top: -23px;
+    left: 398%;
+    top: 105%;
+    transform: translate(-50%, -50%);
+}
+
+.ready {
+    position: absolute;
+    left: 125%;
+    top: 103%;
+    transform: translate(-50%, -50%);
+}
+
+.radio {
+    position: absolute;
+    left: -418%;
+    top: 718%;
+    transform: translate(-50%, -50%);
+}
+
+.button1 {
+    position: absolute;
+    left: 321%;
+    top: 189%;
+    height: 39px;
+    width: 179px;
+    border: none;
+    border-radius: 15px;
+    transform: translate(-50%, -50%);
+}

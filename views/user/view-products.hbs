@@ -1,0 +1,210 @@
+<section>
+    <div class="container mt-3">
+        <div class="ad ">
+
+            <!-- Slider main container -->
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <img src="/images/cake.jpg" style="width: 500px;height: 250px;">
+                    </div>
+                    <div class="swiper-slide"><img src="/images/anniversary.jpg" style="width: 500px;height: 250px;">
+                    </div>
+                    <div class="swiper-slide"><img src="/images/best wishes.jpg" style="width: 500px;height: 250px;">
+                    </div>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+
+            <!-- Slider main container -->
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"><img src="/images/cake.jpg" style="width: 500px;height: 250px;"></div>
+                    <div class="swiper-slide"><img src="/images/anniversary.jpg" style="width: 500px;height: 250px;">
+                    </div>
+                    <div class="swiper-slide"><img src="/images/best wishes.jpg" style="width: 500px;height: 250px;">
+                    </div>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Slider main container -->
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"><img src="/images/cake.jpg" style="width: 500px;height: 250px;"></div>
+                    <div class="swiper-slide"><img src="/images/anniversary.jpg" style="width: 500px;height: 250px;">
+                    </div>
+                    <div class="swiper-slide"><img src="/images/best wishes.jpg" style="width: 500px;height: 250px;">
+                    </div>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Slider main container -->
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"><img src="/images/cake.jpg" style="width: 500px;height: 250px;"></div>
+                    <div class="swiper-slide"><img src="/images/anniversary.jpg" style="width: 500px;height: 250px;">
+                    </div>
+                    <div class="swiper-slide"><img src="/images/best wishes.jpg" style="width: 500px;height: 250px;">
+                    </div>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+        <div class="slider-container">
+            <div class="trending">
+                <h5 class="trend"> Trending NOW</h5>
+
+                {{#each trending}}
+                <div class="card" style="width: 15rem;">
+                    <img class="card-img-top11" src="/product-images/{{this._id}}.jpg"
+                        onerror="this.onerror=null;this.src='/product-images/{{this._id}}.png'" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.name}}</h5>
+                        <p class=" card-text" style="font-size: 13px;">{{this.Description}}</p>
+                        <h6 class="card-text">{{this.price}}</h6>
+                        <div class="text-center">
+                            <button type="submit" onclick="addToCart('{{this._id}}')" class="btn btn-primary ">
+                                Add to cart
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                {{!-- <div class="card" style="width: 15rem;">
+                    <img class="card-img-top11" src="/product-images/{{this._id}}.jpg"
+                        onerror="this.onerror=null;this.src='/product-images/{{this._id}}.png'" alt="Card image cap">
+                    <div class="card-body" style="width: 15rem;height: 3rem;">
+                        <p class=" card-text" style="font-size: 13px;">{{this.Description}}</p>
+                        <h6 class="card-text">{{this.price}}</h6>
+
+                    </div>
+                </div> --}}
+
+
+                {{/each}}
+
+            </div>
+
+        </div>
+
+        <div class="trending">
+            <h5 class="trend"> Birthday Collection</h5>
+            {{#each birthday}}
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top11" src="/product-images/{{this._id}}.jpg"
+                    onerror="this.onerror=null;this.src='/product-images/{{this._id}}.png'" alt="Card image cap">
+                <div class="card-body" style="width: 15rem;height: 3rem;">
+                    <p class=" card-text" style="font-size: 13px;">{{this.Description}}</p>
+                    <h6 class="card-text">{{this.price}}</h6>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+
+
+
+
+        <div class="trending">
+            <h5 class="trend"> Cake Collection</h5>
+            {{#each cakes}}
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top11" src="/product-images/{{this._id}}.jpg"
+                    onerror="this.onerror=null;this.src='/product-images/{{this._id}}.png'" alt="Card image cap">
+                <div class="card-body" style="width: 15rem;height: 3rem;">
+                    <p class=" card-text" style="font-size: 13px;">{{this.Description}}</p>
+                    <h6 class="card-text">{{this.price}}</h6>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+
+
+
+
+
+
+        <div class="trending">
+            <h5 class="trend"> Flowers Collection</h5>
+            {{#each flowers}}
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top11" src="/product-images/{{this._id}}.jpg"
+                    onerror="this.onerror=null;this.src='/product-images/{{this._id}}.png'" alt="Card image cap">
+                <div class="card-body" style="width: 15rem;height: 3rem;">
+                    <p class=" card-text" style="font-size: 13px;">{{this.Description}}</p>
+                    <h6 class="card-text">{{this.price}}</h6>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.swiper', {
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var container = $('.container');
+        var cards = container.find('.card');
+        var cardWidth = cards.first().outerWidth(true);
+        var containerWidth = container.width();
+
+        // Set container width to fit 4 cards
+        container.width(cardWidth * 4);
+
+        // Add click event to next button
+        $('.next-btn').on('click', function () {
+            container.animate({ scrollLeft: "+=" + containerWidth }, "slow");
+        });
+
+        // Add click event to prev button
+        $('.prev-btn').on('click', function () {
+            container.animate({ scrollLeft: "-=" + containerWidth }, "slow");
+        });
+    });
+
+</script>

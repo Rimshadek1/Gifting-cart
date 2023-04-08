@@ -1,0 +1,173 @@
+<header class="header">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" style="font-family: cursive;" href="/">Gifting cart</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" style="font-family: cursive;" href="/">product <span
+                            class="sr-only">(current)</span></a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" style="font-family: cursive;" href="/cart"><i class="fa-solid fa-cart-plus"></i>
+                        Cart<span class="badge badge-success" id="cart-count">{{cartCount}}</span></a>
+                </li>
+                {{#if user}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders">Orders</a>
+                </li>
+
+                {{/if}}
+                <li class="nav-item active">
+                    <a class="nav-link" style="font-family: cursive;" href="/">About
+                        us<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+
+
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" style="color: black;background-color: pink;"
+                    type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    {{#if user}}
+                    {{user.Name}}
+                    {{else}}
+                    Account
+                    {{/if}}
+                </button>
+                <div class="dropdown-menu" style="color: black;background-color: pink;"
+                    aria-labelledby=" dropdownMenuButton">
+                    {{#if user}}
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                    {{else}}
+                    <a class="dropdown-item" href="/login">Login</a>
+
+                    {{/if}}
+
+
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <span class="phone-number me-3">call on <i class="fa-solid fa-phone"></i> 8714122257</span>
+
+        </div>
+
+
+
+    </nav>
+
+</header>{{!-- <div class="giftmenu">
+    <ul>
+        <li class="Sweets">
+            <a class="nav-link" style="font-family: cursive;" href="#">
+                <i class="fa-solid fa-gift"></i> Sweets
+            </a>
+            <ul class="submenu-1">
+                <li><a href="#">Gifts2</a></li>
+                <li class="hover-me"><a href="#">here</a>
+                    <i class="fa fa-angle-right"></i>
+                    <div class="submenu2">
+                        <ul>
+                            <li><a href="#">Gifting</a></li>
+                            <li><a href="#">platform</a></li>
+                            <li><a href="#">Gifts6</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Gifts4</a></li>
+                <li><a href="#">Gifts5</a></li>
+                <li><a href="#">Gifts6</a></li>
+            </ul>
+        </li>
+
+
+
+
+        <li class="cakes">
+            <a class="nav-link" style="font-family: cursive;" href="#">
+                <i class="fa-solid fa-cake-candles"></i> Cakes
+            </a>
+            <ul class="submenu-1">
+                <li><a href="#">Gifts2</a></li>
+                <li class="hover-me"><a href="#">here</a>
+                    <i class="fa fa-angle-right"></i>
+                    <div class="submenu2">
+                        <ul>
+                            <li><a href="#">Gifting</a></li>
+                            <li><a href="#">platform</a></li>
+                            <li><a href="#">Gifts6</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Gifts4</a></li>
+                <li><a href="#">Gifts5</a></li>
+                <li><a href="#">Gifts6</a></li>
+            </ul>
+        </li>
+
+
+        <li class="Flowers">
+            <a class="nav-link" style="font-family: cursive;" href="#">
+                <i class="fa-sharp fa-light fa-flower-daffodil"></i> Flowers
+            </a>
+            <ul class="submenu-1">
+                <li><a href="#">Gifts2</a></li>
+                <li class="hover-me"><a href="#">here</a>
+                    <i class="fa fa-angle-right"></i>
+                    <div class="submenu2">
+                        <ul>
+                            <li><a href="#">Gifting</a></li>
+                            <li><a href="#">platform</a></li>
+                            <li><a href="#">Gifts6</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Gifts4</a></li>
+                <li><a href="#">Gifts5</a></li>
+                <li><a href="#">Gifts6</a></li>
+            </ul>
+        </li>
+
+
+
+        <li class="plants">
+            <a class="nav-link" style="font-family: cursive;" href="#">
+                <i class="fa-solid fa-plant-wilt"></i>Plants
+            </a>
+            <ul class="submenu-1">
+                <li><a href="#">Gifts2</a></li>
+                <li class="hover-me"><a href="#">here</a>
+                    <i class="fa fa-angle-right"></i>
+                    <div class="submenu2">
+                        <ul>
+                            <li><a href="#">Gifting</a></li>
+                            <li><a href="#">platform</a></li>
+                            <li><a href="#">Gifts6</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Gifts4</a></li>
+                <li><a href="#">Gifts5</a></li>
+                <li><a href="#">Gifts6</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="search">
+    <div class="form-outline">
+        <input type="search" id="form1" class="form-control" />
+        <label class="form-label" for="form1">Search</label>
+    </div>
+
+</div> --}}

@@ -1,0 +1,71 @@
+.jumbotron1 {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 48%;
+    top: 59%;
+    height: 554px;
+    width: 739px;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}
+
+body {
+    /* background-color: #e7c0c6; */
+    background: linear-gradient(to right, #ccccff 0%, #ff99cc 100%);
+}
+
+.forms {
+    font-family: cursive;
+}
+
+.container {
+    position: absolute;
+    left: 23%;
+    top: 62%;
+    height: 442px;
+    transform: translate(-50%, -50%);
+    width: 366px;
+}
+
+.button {
+    background-color: #fe86fe;
+    border-radius: 15px;
+    border: #fe86fe;
+    height: 46px;
+    font-size: large;
+    font-family: cursive;
+    color: 696969;
+    cursor: progress;
+}
+
+.button:hover {
+    border-radius: 15px;
+    background: linear-gradient(to right, #ccccff 0%, #ff99cc 100%);
+}
+
+.account {
+    margin-top: 69px;
+    margin-left: 83px;
+    font-family: cursive;
+    color: #696969;
+    cursor: not-allowed;
+}
+
+.signup {
+    margin-top: 11px;
+    margin-left: 44px;
+    font-family: cursive;
+    color: #b4b3b3;
+    cursor: not-allowed;
+}
+
+.logo {
+    font-family: cursive;
+    position: absolute;
+    left: 5%;
+    top: 6%;
+    transform: translate(-50%, -50%);
+
+    height: 16px;
+
+}

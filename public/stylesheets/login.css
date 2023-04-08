@@ -1,0 +1,95 @@
+  body {
+
+      background: linear-gradient(to right, #ccccff 0%, #ff99cc 100%);
+  }
+
+  .dine {
+      color: aliceblue;
+      font-style: oblique;
+      font-family: cursive;
+      cursor: not-allowed;
+  }
+
+  .jumbotron1 {
+      background-color: rgb(255, 255, 255);
+      position: absolute;
+      left: 48%;
+      top: 59%;
+      max-height: 442px;
+      max-width: 739px;
+      transform: translate(-50%, -50%);
+      border-radius: 15px;
+  }
+
+  @media (max-width:500px) {
+      .jumbotron1 {
+          background-color: rgb(255, 255, 255);
+          position: absolute;
+          left: 48%;
+          top: 59%;
+          max-height: 200px;
+          max-width: 400px;
+          transform: translate(-50%, -50%);
+          border-radius: 15px;
+      }
+  }
+
+  .logintext {
+      margin-top: 56px;
+      margin-left: 104px;
+      font-family: cursive;
+      color: #696969;
+      cursor: not-allowed;
+  }
+
+  .container {
+      position: absolute;
+      left: 22%;
+      top: 74%;
+      height: 442px;
+      transform: translate(-50%, -50%);
+      width: 366px;
+  }
+
+  .button {
+      background-color: #fe86fe;
+      border-radius: 15px;
+      border: #fe86fe;
+      height: 46px;
+      font-size: large;
+      font-family: cursive;
+      color: 696969;
+
+      cursor: progress;
+
+  }
+
+  .forms {
+      font-family: cursive;
+      width: 321px;
+      position: absolute;
+      left: 54%;
+      top: 30%;
+      transform: translate(-50%, -50%);
+
+  }
+
+  .logo {
+      font-family: cursive;
+      position: absolute;
+      left: 5%;
+      top: 6%;
+      transform: translate(-50%, -50%);
+
+      height: 16px;
+
+  }
+
+  .text {
+      font-family: cursive;
+      position: absolute;
+      left: 23%;
+      top: 26%;
+      transform: translate(-50%, -50%);
+      color: rgb(197, 194, 194);
+  }
