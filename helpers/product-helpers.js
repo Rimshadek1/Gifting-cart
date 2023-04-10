@@ -54,8 +54,9 @@ module.exports = {
             resolve(products);
         });
     }, getTrending: () => {
+
         return new Promise(async (resolve, reject) => {
-            let trending = await db.get().collection(collection.product_collection).find({ category: 'trending' }).toArray();
+            let trending = await db.get().collection(collection.product_collection).find({ category: 'trending' }).sort({ datetime: -1 }).toArray();
             resolve(trending);
         });
     },

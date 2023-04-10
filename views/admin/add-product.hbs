@@ -33,9 +33,15 @@
                     <label for="">image</label>
                     <input type="file" class="form-control" name="image">
                 </div>
+                <input type="hidden" id="datetime" name="datetime">
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type=" submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
 </div>
+<script>
+    const datetimeField = document.getElementById("datetime");
+    const currentDatetime = new Date().toISOString();
+    datetimeField.value = currentDatetime;
+</script>
