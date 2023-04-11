@@ -4,4 +4,10 @@
  .gitignore.swo
         public/.gitignore
  .gitignore.swo
+<a href="/admin/Delete-product/{{this._id}}" class="btn btn-danger"
+                            onclick="return confirm('Are you sure to delete {{this.Name}}')">Delete</a>
+                    </td>
+
+
+/public/product-images
 

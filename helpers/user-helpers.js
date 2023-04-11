@@ -271,18 +271,48 @@ module.exports = {
                 db.get().collection(collection.cart_collection).deleteOne({ user: new ObjectId(order.userId) })
                 resolve(response.insertedId)
             })
-            // db.get().collection(collection.product_collection).updateOne({ _id: new ObjectId(proId) },
-            //     { $inc: { item_available: -1 } })
-            db.get().collection(collection.product_collection).findOneAndUpdate(
-                { _id: new ObjectId(products[0].item), item_available: { $gt: 0 } },
-                { $inc: { item_available: -1 } }
-            )
+
+
+
+
+            // Assume that `products` is an array of objects representing the products to be updated
+            const productUpdates = products.map((product) => ({
+                updateOne: {
+                    filter: { _id: new ObjectId(product.item), item_available: { $gte: product.quantity } },
+                    update: { $inc: { item_available: -product.quantity } },
+                },
+            }));
+
+            db.get().collection(collection.product_collection).bulkWrite(productUpdates)
                 .then((result) => {
-                    console.log(result); // check the result of the update operation
+                    console.log(result); // check the result of the bulk write operation
                 })
                 .catch((error) => {
-                    console.log(error); // log any errors thrown by the update operation
+                    console.log(error); // log any errors thrown by the bulk write operation
                 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // db.get().collection(collection.product_collection).findOneAndUpdate(
+            //     { _id: new ObjectId(products[0].item), item_available: { $gt: 0 } },
+            //     { $inc: { item_available: -1 } }
+            // )
+            //     .then((result) => {
+            //         console.log(result); // check the result of the update operation
+            //     })
+            //     .catch((error) => {
+            //         console.log(error); // log any errors thrown by the update operation
+            //     });
 
 
 
