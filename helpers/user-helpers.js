@@ -161,9 +161,9 @@ module.exports = {
 
 
     changeproductQuantity: (details) => {
-        console.log('det', details);
         details.count = parseInt(details.count)
         details.quantity = parseInt(details.quantity)
+        console.log('count:', details.count, 'quantity:', details.quantity)
         return new Promise(async (resolve, reject) => {
             let product = await db.get().collection(collection.product_collection)
                 .findOne({ _id: new ObjectId(details.product) })
@@ -171,22 +171,29 @@ module.exports = {
                 let availableQuantity = product.item_available
                 let cartUpdate = {}
                 if (details.count == -1 && details.quantity == 1) {
+                    resolve({
+                        removeProduct: true
+                    })
                     // Remove product from cart
                     cartUpdate = {
                         $pull: { products: { item: new ObjectId(details.product) } }
                     }
-                } else {
+
+
+                }
+                else {
                     // Update product quantity in cart
                     let newQuantity = details.quantity + details.count
                     let productDetails = await db.get().collection(collection.product_collection)
-                        .findOne({ _id: new ObjectId(details.product) }, { item_available: 1 })
+                        .findOne({ _id: new ObjectId(details.product) }, { item_available: 1, item_quantity: 1 })
                     if (productDetails && newQuantity > productDetails.item_available) {
                         // Don't update cart if new quantity is greater than available quantity
                         resolve({
+
                             status: false, message: "Cannot add more than available quantity",
                             availableQuantity: productDetails.item_available
                         })
-
+                        return
                     }
                     cartUpdate = {
                         $inc: { 'products.$.quantity': details.count }
@@ -198,8 +205,10 @@ module.exports = {
                     },
                         cartUpdate
                     ).then((response) => {
+                        console.log('response:', response)
                         resolve({ status: true })
                     })
+
             } else {
                 resolve({ status: false, message: "Product not found" })
             }
@@ -210,9 +219,28 @@ module.exports = {
 
 
 
+    // if (details.count == -1 && details.quantity == 1) {
+    //     // Remove product from cart
+    //     cartUpdate = {
+    //         $pull: { products: { item: new ObjectId(details.product) } }
+    //     }
+    // }
 
 
-
+    // if (details.count == -1 && details.quantity == 1) {
+    //     // Remove product from cart
+    //     if (product.item_quantity == 1) {
+    //         // If product quantity is already 1, show a message
+    //         resolve({
+    //             status: false, message: "Minimum number of products is 1",
+    //             availableQuantity: product.item_available
+    //         })
+    //         return
+    //     }
+    //     cartUpdate = {
+    //         $pull: { products: { item: new ObjectId(details.product) } }
+    //     }
+    // }
 
 
 
@@ -223,16 +251,16 @@ module.exports = {
     //     details.count = parseInt(details.count)
     //     details.quantity = parseInt(details.quantity)
     //     return new Promise(async (resolve, reject) => {
-    //         if (details.count == -1 && details.quantity == 1) {
-    //             db.get().collection(collection.cart_collection)
-    //                 .updateOne({
-    //                     _id: new ObjectId(details.cart)
-    //                 }, {
-    //                     $pull: { products: { item: new ObjectId(details.product) } }
-    //                 }).then((response) => {
-    //                     resolve({ removeProduct: true })
-    //                 })
-    //         } else {
+    //             if(details.count == -1 && details.quantity == 1) {
+    //     db.get().collection(collection.cart_collection)
+    //         .updateOne({
+    //             _id: new ObjectId(details.cart)
+    //         }, {
+    //             $pull: { products: { item: new ObjectId(details.product) } }
+    //         }).then((response) => {
+    //             resolve({ removeProduct: true })
+    //         })
+    // } else {
     //             db.get().collection(collection.cart_collection)
     //                 .updateOne({
     //                     _id: new ObjectId(details.cart), 'products.item': new ObjectId(details.product)
@@ -335,10 +363,6 @@ module.exports = {
                 db.get().collection(collection.cart_collection).deleteOne({ user: new ObjectId(order.userId) })
                 resolve(response.insertedId)
             })
-
-
-
-
             // Assume that `products` is an array of objects representing the products to be updated
             const productUpdates = products.map((product) => ({
                 updateOne: {

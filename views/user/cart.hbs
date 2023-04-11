@@ -79,14 +79,12 @@
             success: (response) => {
                 if (response.removeProduct) {
                     alert('product removed from cart')
-                    location.reload()
+                    location.reload() // Reload the page to remove the product from the cart
                 } else if (response.status === false) {
                     alert(response.message + " Maximum available quantity is " + response.availableQuantity)
                 } else {
-
                     document.getElementById(proId).innerHTML = quantity + count
                     document.getElementById('total').innerHTML = response.total
-
                 }
             }
         })
