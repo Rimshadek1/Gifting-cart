@@ -158,32 +158,96 @@ module.exports = {
             resolve(count)
         })
     },
+
+
     changeproductQuantity: (details) => {
+        console.log('det', details);
         details.count = parseInt(details.count)
         details.quantity = parseInt(details.quantity)
         return new Promise(async (resolve, reject) => {
-            if (details.count == -1 && details.quantity == 1) {
-                db.get().collection(collection.cart_collection)
-                    .updateOne({
-                        _id: new ObjectId(details.cart)
-                    }, {
+            let product = await db.get().collection(collection.product_collection)
+                .findOne({ _id: new ObjectId(details.product) })
+            if (product) {
+                let availableQuantity = product.item_available
+                let cartUpdate = {}
+                if (details.count == -1 && details.quantity == 1) {
+                    // Remove product from cart
+                    cartUpdate = {
                         $pull: { products: { item: new ObjectId(details.product) } }
-                    }).then((response) => {
-                        resolve({ removeProduct: true })
-                    })
-            } else {
+                    }
+                } else {
+                    // Update product quantity in cart
+                    let newQuantity = details.quantity + details.count
+                    let productDetails = await db.get().collection(collection.product_collection)
+                        .findOne({ _id: new ObjectId(details.product) }, { item_available: 1 })
+                    if (productDetails && newQuantity > productDetails.item_available) {
+                        // Don't update cart if new quantity is greater than available quantity
+                        resolve({
+                            status: false, message: "Cannot add more than available quantity",
+                            availableQuantity: productDetails.item_available
+                        })
+
+                    }
+                    cartUpdate = {
+                        $inc: { 'products.$.quantity': details.count }
+                    }
+                }
                 db.get().collection(collection.cart_collection)
                     .updateOne({
                         _id: new ObjectId(details.cart), 'products.item': new ObjectId(details.product)
                     },
-                        {
-                            $inc: { 'products.$.quantity': details.count }
-                        }).then((response) => {
-                            resolve({ status: true })
-                        })
+                        cartUpdate
+                    ).then((response) => {
+                        resolve({ status: true })
+                    })
+            } else {
+                resolve({ status: false, message: "Product not found" })
             }
         })
-    },
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // changeproductQuantity: (details) => {
+    //     details.count = parseInt(details.count)
+    //     details.quantity = parseInt(details.quantity)
+    //     return new Promise(async (resolve, reject) => {
+    //         if (details.count == -1 && details.quantity == 1) {
+    //             db.get().collection(collection.cart_collection)
+    //                 .updateOne({
+    //                     _id: new ObjectId(details.cart)
+    //                 }, {
+    //                     $pull: { products: { item: new ObjectId(details.product) } }
+    //                 }).then((response) => {
+    //                     resolve({ removeProduct: true })
+    //                 })
+    //         } else {
+    //             db.get().collection(collection.cart_collection)
+    //                 .updateOne({
+    //                     _id: new ObjectId(details.cart), 'products.item': new ObjectId(details.product)
+    //                 },
+    //                     {
+    //                         $inc: { 'products.$.quantity': details.count }
+    //                     }).then((response) => {
+    //                         resolve({ status: true })
+    //                     })
+    //         }
+    //     })
+    // }
+
+
+    ,
     deleteCart: (details) => {
 
         console.log('details.cart');

@@ -11,15 +11,6 @@
                 </tr>
             </thead>
             <tbody>
-
-
-
-
-
-
-
-
-
                 {{#each products}}
                 <tr>
 
@@ -31,6 +22,9 @@
                     <td>{{this.product.Name}}</td>
                     <td>{{this.product.price}}</td>
 
+
+
+
                     <td>
 
                         <button class="cart-item-count mr-3 btn-danger"
@@ -40,6 +34,7 @@
                         <button class="cart-item-count ml-3 btn-primary"
                             onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)">+</button>
                     </td>
+
 
                     <td>
 
@@ -57,7 +52,7 @@
         <hr>
         <div>
             <h5 class="float-right" style="color: darkgreen;margin-right: 133px;">Amount is:
-                <span id="total">{{totalCart}}</span>
+                <span id="total">{{ totalCart }}</span>
             </h5>
         </div>
         <div><a href="/place-order" class="btn btn-primary float-right text-center"
@@ -85,6 +80,8 @@
                 if (response.removeProduct) {
                     alert('product removed from cart')
                     location.reload()
+                } else if (response.status === false) {
+                    alert(response.message + " Maximum available quantity is " + response.availableQuantity)
                 } else {
 
                     document.getElementById(proId).innerHTML = quantity + count

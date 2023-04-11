@@ -71,6 +71,7 @@
                 <h5 class="trend">Trending NOW</h5>
 
                 {{#each trending}}
+                {{#if this.item_available}}
                 <div class="card" style="width: 15rem;">
                     <img class="card-img-top11" src="/product-images/{{this._id}}.jpg"
                         onerror="this.onerror=null;this.src='/product-images/{{this._id}}.png'" alt="Card image cap">
@@ -86,6 +87,7 @@
                         </div>
                     </div>
                 </div>
+{{/if}}
                 {{/each}}
 
             </div>
