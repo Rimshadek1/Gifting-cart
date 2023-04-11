@@ -69,7 +69,7 @@
         <div class="slider-container">
             <div class="trending">
                 <h5 class="trend">Trending NOW</h5>
-        
+
                 {{#each trending}}
                 <div class="card" style="width: 15rem;">
                     <img class="card-img-top11" src="/product-images/{{this._id}}.jpg"
@@ -78,6 +78,7 @@
                         <h5 class="card-title">{{this.name}}</h5>
                         <p class="card-text" style="font-size: 13px;">{{this.Description}}</p>
                         <h6 class="card-text">{{this.price}}</h6>
+                        <h6 class="card-text">Available : {{this.item_available}}</h6>
                         <div class="text-center">
                             <button type="submit" onclick="addToCart('{{this._id}}')" class="btn btn-primary ">
                                 Add to cart
@@ -86,9 +87,9 @@
                     </div>
                 </div>
                 {{/each}}
-        
+
             </div>
-        
+
             <div class="slider-controls">
                 <button class="prev-btn hee" style="float: left;"></button>
                 <button class="next-btn hee1" style="float: right;"></button>
@@ -157,7 +158,7 @@
             delay: 4000,
             disableOnInteraction: false,
         },
-     
+
 
         // If we need pagination
         pagination: {
@@ -176,60 +177,60 @@
 </script>
 <script>
     $(document).ready(function () {
-            var container = $('.slider-container');
-            var cards = container.find('.card');
-            var cardWidth = cards.first().outerWidth(true);
-            var containerWidth = container.width();
-            var distance = cardWidth * 3.5;
+        var container = $('.slider-container');
+        var cards = container.find('.card');
+        var cardWidth = cards.first().outerWidth(true);
+        var containerWidth = container.width();
+        var distance = cardWidth * 3.5;
 
-            // Set container width to fit 4 cards
-            container.width(cardWidth * 3.5);
+        // Set container width to fit 4 cards
+        container.width(cardWidth * 3.5);
 
-            // Add click event to next button
-            container.on('click', '.next-btn', function () {
-                var trending = container.find('.trending');
-                var scrollLeft = trending.scrollLeft();
-                var maxScrollLeft = trending.prop('scrollWidth') - trending.outerWidth();
+        // Add click event to next button
+        container.on('click', '.next-btn', function () {
+            var trending = container.find('.trending');
+            var scrollLeft = trending.scrollLeft();
+            var maxScrollLeft = trending.prop('scrollWidth') - trending.outerWidth();
 
-                if (scrollLeft >= maxScrollLeft) {
-                    trending.animate({ scrollLeft: 0 }, 'slow');
-                } else {
-                    trending.animate({ scrollLeft: '+=' + distance }, 'slow');
-                }
-            });
-
-            // Add click event to prev button
-            container.on('click', '.prev-btn', function () {
-                var trending = container.find('.trending');
-                var scrollLeft = trending.scrollLeft();
-
-                if (scrollLeft <= 0) {
-                    trending.animate({ scrollLeft: trending.prop('scrollWidth') - trending.outerWidth() }, 'slow');
-                } else {
-                    trending.animate({ scrollLeft: '-=' + distance }, 'slow');
-                }
-            });
-
-            // Auto-slide images after 4 seconds
-            setInterval(function () {
-                var trending = container.find('.trending');
-                var scrollLeft = trending.scrollLeft();
-                var maxScrollLeft = trending.prop('scrollWidth') - trending.outerWidth();
-
-                if (scrollLeft >= maxScrollLeft) {
-                    trending.animate({ scrollLeft: 0 }, 'slow', function () {
-                        $('.next-btn').click();
-                    });
-                } else {
-                    $('.next-btn').click();
-                }
-            }, 12000);
+            if (scrollLeft >= maxScrollLeft) {
+                trending.animate({ scrollLeft: 0 }, 'slow');
+            } else {
+                trending.animate({ scrollLeft: '+=' + distance }, 'slow');
+            }
         });
 
-        function addToCart(productId) {
-            // Your code to add the product to the cart goes here
-            console.log('Product added to cart: ' + productId);
-        }
+        // Add click event to prev button
+        container.on('click', '.prev-btn', function () {
+            var trending = container.find('.trending');
+            var scrollLeft = trending.scrollLeft();
+
+            if (scrollLeft <= 0) {
+                trending.animate({ scrollLeft: trending.prop('scrollWidth') - trending.outerWidth() }, 'slow');
+            } else {
+                trending.animate({ scrollLeft: '-=' + distance }, 'slow');
+            }
+        });
+
+        // Auto-slide images after 4 seconds
+        setInterval(function () {
+            var trending = container.find('.trending');
+            var scrollLeft = trending.scrollLeft();
+            var maxScrollLeft = trending.prop('scrollWidth') - trending.outerWidth();
+
+            if (scrollLeft >= maxScrollLeft) {
+                trending.animate({ scrollLeft: 0 }, 'slow', function () {
+                    $('.next-btn').click();
+                });
+            } else {
+                $('.next-btn').click();
+            }
+        }, 12000);
+    });
+
+    function addToCart(productId) {
+        // Your code to add the product to the cart goes here
+        console.log('Product added to cart: ' + productId);
+    }
 
 
 </script>

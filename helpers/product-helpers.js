@@ -41,7 +41,8 @@ module.exports = {
 
     ,
     addProduct: (product, callback) => {
-
+        product.item_available = parseInt(product.item_available);
+        product.price = parseInt(product.price);
         console.log(product.category)
         db.get().collection('product').insertOne(product).then((data) => {
             console.log(data);
